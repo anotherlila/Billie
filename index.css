@@ -1,0 +1,37 @@
+
+body{
+    .notable-regular {
+        font-family: "Notable", sans-serif;
+        font-weight: 200px;
+        font-style: normal; 
+      }
+      
+    background-color: rgb(0, 0, 215);
+}
+h1{
+        font-family: "Notable", sans-serif;
+        font-style: normal;
+        color: orange;
+        font-size:60px;
+        text-align: center;
+      }
+a {
+  color: white;
+}
+h2{
+  font-family: "Notable", sans-serif;
+  font-style: normal;
+  color: orange;
+  font-size:60px;
+  text-align: center;
+}
+a {
+color: white;
+}
+script{
+  font-family: "Notable", sans-serif;
+  font-style: normal;
+  color: orange;
+  font-size:60px;
+  text-align: center;
+}
