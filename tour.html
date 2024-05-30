@@ -53,21 +53,20 @@
     var totalSeats = 23500; 
     var occupiedSeats = 20000;
     var remainingSeats = totalSeats - occupiedSeats;
+    update();
+    function update(){
     document.getElementById("remainingSeats").innerHTML = "<p>Remaining Seats: " + remainingSeats + "</p>";
+    }
     </script>
     <div>
   <h3>Total Seats: 23,500</h3>
   <h3>Seats Bought: 22,000</h3>
+  <button onclick="update();occupiedSeats++">Book a Seat</button>
+  <button onclick="update();occupiedSeats--">Cancel Order</button>
   <br>
   <!--New York-->
   <div id="remainingSeats"></div>
   <h2>New York </h2>
-  <script>
-  var totalSeats = 23500; 
-  var occupiedSeats = 20000;
-  var remainingSeats = totalSeats - occupiedSeats;
-  document.getElementById("remainingSeats").innerHTML = "<p>Remaining Seats: " + remainingSeats + "</p>";
-  </script>
   <div>
 <h3>Total Seats: 23,500</h3>
 <h3>Seats Bought: 22,000</h3>
