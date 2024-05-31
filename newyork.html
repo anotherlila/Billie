@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Sales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background:navy;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: grey;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            text-align: center;
+        }
+        h1, h2, p, label {
+            color: white;
+        }
+        form, #checkout-form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: orange;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(212, 138, 0);
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+    </head>
+    <body> 
+         <!--Nav bar-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Home </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            
+              <li class="nav-item">
+                <a class="nav-link" href="tour.html">tour</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Albums
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="wwafawdwg.html">Album 1</a></li>
+                  <li><a class="dropdown-item" href="hte.html">Album 2</a></li>
+                  <li><a class="dropdown-item" href="hmhas.html">Album 3</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--End of nav bar-->
+        <div class="container">
+            <h1>Billie Eilish Hit me Hard and soft tour</h1>
+            <h2>New York</h2>
+            <p>Tickets remaining: <span id="tickets-remaining">100</span></p>
+            <form id="ticket-form">
+                <label for="ticket-quantity">Number of tickets:</label>
+                <input type="number" id="ticket-quantity" min="1" required>
+                <button type="submit">Buy Tickets</button>
+            </form>
+            <div id="checkout-form" style="display:none;">
+                <h2>Checkout</h2>
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="card-number" placeholder="Credit Card Number" required>
+                <input type="text" id="expiration-date" placeholder="Expiration Date (MM/YY)" required>
+                <input type="text" id="cvv" placeholder="CVV" required>
+                <button id="purchase-button">Complete Purchase</button>
+            </div>
+            <p id="message" class="message"></p>
+        </div>
+        <!-- JAVASCRIPT-->
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalTickets = 100;
+            let ticketsSold = 0;
+
+            const ticketsRemainingElement = document.getElementById('tickets-remaining');
+            const ticketForm = document.getElementById('ticket-form');
+            const checkoutForm = document.getElementById('checkout-form');
+            const messageElement = document.getElementById('message');
+
+            ticketForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const ticketQuantity = parseInt(document.getElementById('ticket-quantity').value, 10);
+                if (ticketQuantity <= 0) {
+                    showMessage('error', 'The number of tickets must be greater than zero.');
+                } else if (ticketsSold + ticketQuantity > totalTickets) {
+                    showMessage('error', 'Not enough tickets available.');
+                } else {
+                    showCheckoutForm();
+                }
+            });
+
+            document.getElementById('purchase-button').addEventListener('click', (event) => {
+                event.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const cardNumber = document.getElementById('card-number').value.trim();
+                const expirationDate = document.getElementById('expiration-date').value.trim();
+                const cvv = document.getElementById('cvv').value.trim();
+
+                if (!name || !cardNumber || !expirationDate || !cvv) {
+                    showMessage('error', 'Please fill in all fields.');
+                } else {
+                    purchaseTickets(name);
+                }
+            });
+
+            function showMessage(type, text) {
+                messageElement.textContent = text;
+                messageElement.className = `message ${type}`;
+                setTimeout(() => {
+                    messageElement.textContent = '';
+                    messageElement.className = 'message';
+                }, 3000);
+            }
+
+            function showCheckoutForm() {
+                document.getElementById('ticket-form').style.display = 'none';
+                document.getElementById('checkout-form').style.display = 'block';
+            }
+
+            function purchaseTickets(name) {
+                const ticketQuantity = parseInt(document.getElementById('ticket-quantity').value, 10);
+                ticketsSold += ticketQuantity;
+                const totalCost = ticketQuantity * 50; // Assuming ticket price is $50
+                showMessage('success', `Thank you, ${name}! You have successfully purchased ${ticketQuantity} tickets. Total cost: $${totalCost}.`);
+                ticketsRemainingElement.textContent = totalTickets - ticketsSold;
+                resetForm();
+            }
+
+            function resetForm() {
+                ticketForm.reset();
+                checkoutForm.reset();
+                document.getElementById('ticket-form').style.display = 'block';
+                document.getElementById('checkout-form').style.display = 'none';
+            }
+        });
+    </script> 
+    </body>
+    </html>
+    
+    

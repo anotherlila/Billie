@@ -10,8 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <title>BILLIE EILISH|Tour</title>
+    <style>
+      .btn {
+        text-align: center;
+        position:center;
+      }
+    </style>
 </head>
-<body background="662f9b0a04291.jpg">
+<body  background="662f9b0a04291.jpg">
     <!--Nav bar-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -30,7 +36,7 @@
                 Album
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="wwafawdwg.html">album 1</a></li>
+                <li><a class="dropdown-item" href="wwafawdwg.html">Album 1</a></li>
                 <li><a class="dropdown-item" href="hte.html">Album 2</a></li>
                 <li><a class="dropdown-item" href="hmhas.html">Album 3</a></li>
               </ul>
@@ -45,41 +51,16 @@
       WORLD TOUR
   </h1>
   <!--End of title-->
-    <h2> TOUR</h2>
+    <h2> Tour Locations</h2>
     <!--Chicago-->
-    <div id="remainingSeats"></div>
     <h2>CHICAGO</h2>
-    <script>
-    var totalSeats = 23500; 
-    var occupiedSeats = 20000;
-    var remainingSeats = totalSeats - occupiedSeats;
-    update();
-    function update(){
-    document.getElementById("remainingSeats").innerHTML = "<p>Remaining Seats: " + remainingSeats + "</p>";
-    }
-    </script>
-    <div>
-  <h3>Total Seats: 23,500</h3>
-  <h3>Seats Bought: 22,000</h3>
-  <button onclick="update();occupiedSeats++">Book a Seat</button>
-  <button onclick="update();occupiedSeats--">Cancel Order</button>
-  <br>
+    <a class="btn btn-warning " href="chicago.html" role="button">CLICK TO BUY</a>
   <!--New York-->
-  <div id="remainingSeats"></div>
   <h2>New York </h2>
-  <div>
-<h3>Total Seats: 23,500</h3>
-<h3>Seats Bought: 22,000</h3>
-<div id="remainingSeats"></div>
+ 
+  <a class="btn btn-warning " href="newyork.html" role="button">CLICK TO BUY</a>
+
 <h2>Los Angeles</h2>
-<script>
-var totalSeats = 23500; 
-var occupiedSeats = 20000;
-var remainingSeats = totalSeats - occupiedSeats;
-document.getElementById("remainingSeats").innerHTML = "<p>Remaining Seats: " + remainingSeats + "</p>";
-</script>
-<div>
-<h3>Total Seats: 23,500</h3>
-<h3>Seats Bought: 22,000</h3>
+<a class="btn btn-warning " href="LA.html" role="button">CLICK TO BUY</a>
 </body>
 </html>
